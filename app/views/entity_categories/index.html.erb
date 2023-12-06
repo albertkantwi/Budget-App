@@ -1,0 +1,49 @@
+<h1>Category Summary</h1>
+<%= render 'navbar/navbar', back_link: group_categories_path, title:"TRANSACTIONS" %>
+
+<div>
+  <div>
+    <div>
+      <div>
+        <div>
+          <%= content_tag :i, "", class: "fa #{@group_category.icon}" %>
+        </div>  
+        <div>
+          <%= @group_category.name %>
+        </div>
+      </div>
+      <div>
+        <div>
+          <%= @group_category.user.full_name %>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      Total amount $ <%= @group_category.entity_categories.sum(:amount) %>
+    </div>
+    
+  </div>
+
+  <div>
+    <% @entity_categories.order(created_at: :desc).each do |entity_category| %>
+      <div>
+        <div>
+          <div>
+            <%= entity_category.name %>
+          </div>
+          <div>
+            $ <%= entity_category.amount %>
+          </div>
+           <div>
+      <%= link_to 'Edit', edit_group_category_entity_category_path(@group_category, entity_category), class: "edit-link" %>
+    </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= link_to 'ADD TRANSACTION', new_group_category_entity_category_path(@group_category),  class: "add-link" %>
+  </div>
+</div>
