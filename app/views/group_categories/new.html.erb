@@ -1,0 +1,18 @@
+<%= render 'navbar/navbar', back_link: 
+group_categories_path, title:"New Category" %>
+
+<%=form_for @group_category, html: {class:""} do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name, {required: true} %>
+  </div>
+
+  <div>
+    <%= f.label :icon %>
+    <%= f.select :icon, GroupCategory::ICONS.invert, { include_blank: true }, { required: true, class: "" } %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
